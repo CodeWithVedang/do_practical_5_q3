@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/CodeWithVedang/do_practical_5_q3.git'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                bat 'docker build -t do_practical_5_q3:latest .'
+            }
+        }
+        stage('Run Docker Container') {
+            steps {
+                bat 'docker run --rm do_practical_5_q3:latest'
+            }
+        }
+    }
+}
